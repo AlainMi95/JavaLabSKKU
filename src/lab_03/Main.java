@@ -6,26 +6,73 @@ import java.util.Scanner;
 public class Main {
     private static Main MAIN = new Main();
     private static Scanner SCANNER = new Scanner(System.in);
-    public static void main(String[] args) {
-        MAIN.printWelcomeScreen();
-        int burgerType = MAIN.getUserIntInput();
-        MAIN.printCheeseSelectionScreen();
-        int cheeseType = MAIN.getUserIntInput();
 
-        boolean skip = false;
-        ArrayList al = new ArrayList();
+    private Burger burger;
+    private Cheese cheese;
+    private Ingredients ingredients;
+    private Extra extra;
+    private Beverage beverage;
+
+    private boolean skip = false;
+
+    public static void main(String[] args) {
+        MAIN.runSubWayApp();
+    }
+
+    private void runSubWayApp() {
+        printWelcomeScreen();
+        int burgerNumber = getUserIntInput();
+        if(burgerNumber == 0){System.exit(0);}
+        burger = new Burger();
+        burger.setCost(getBurgerCostByNumber(burgerNumber));
+        burger.setType(getBurgerTypeAsStringByNumber(burgerNumber));
+
+        printCheeseSelectionScreen();
+        int cheeseNumber = getUserIntInput();
+        cheese = new Cheese();
+        cheese.setCost(getCheeseCostByNumber(cheeseNumber));
+        cheese.setType(getCheeseTypeAsStringByNumber(cheeseNumber));
+        burger.setCheese(cheese);
+
+        ingredients = new Ingredients();
         while(!skip){
-            MAIN.printIngredientsSelectionScreen();
-            int ingredient = MAIN.getUserIntInput();
-            if(ingredient ==0){
+            printIngredientsSelectionScreen();
+            int ingredientNumber = getUserIntInput();
+            if(ingredientNumber == 0){
                 skip = true;
             }else {
-                al.add(ingredient);
+                ingredients.setCost(getIngredientCostByNumber(ingredientNumber));
+                ingredients.setType(getIngredientTypeAsStringByNumber(ingredientNumber));
+                burger.getIngredients().add(ingredients);
             }
         }
 
+        printBeverageSelectionScreen();
+        int beverageNumber = getUserIntInput();
+        if(beverageNumber != 0) {
+            beverage = new Beverage();
+            beverage.setCost(getBeverageCostByNumber(beverageNumber));
+            beverage.setType(getBeverageTypeAsStringByNumber(beverageNumber));
 
+            printIceCelectionScreen();
+            int iceOptionUserInput = getUserIntInput();
 
+            if(iceOptionUserInput == 1) {
+                beverage.setIce(true);
+            }else {
+                beverage.setIce(false);
+            }
+        }
+
+        printExtraSelectionScreen();
+        int extraNumber = getUserIntInput();
+        if(extraNumber != 0) {
+            extra = new Extra();
+            extra.setCost(getExtraCostByNumber(extraNumber));
+            extra.setType(getExtraTypeAsStringByNumber(extraNumber));
+        }
+
+        printCheck();
     }
 
     private void printWelcomeScreen() {
@@ -87,7 +134,126 @@ public class Main {
         System.out.print("Select Extra (1-3): ");
     }
 
+    private void printCheck(){
+        System.out.println("========================");
+        int burgerCost = burger.calculateCost();
+        System.out.println("| Burger (with cheese and ingredients): "+burgerCost);
+
+        int beverageCost = beverage.calculateCost();
+        if(beverage.isIce()) {
+            System.out.println("| Beverage (with ice): "+beverageCost);
+        }else {
+            System.out.println("| Beverage (without ice): "+beverageCost);
+        }
+
+        int extraCost = 0;
+        if(extra != null) {
+            extraCost = extra.calculateCost();
+            System.out.println("| Extra: " + extraCost);
+        }
+        int totalCost = burgerCost+beverageCost+extraCost;
+        System.out.println("| Total: "+totalCost);
+    }
+
     private int getUserIntInput() {
         return SCANNER.nextInt();
+    }
+
+    private String getBurgerTypeAsStringByNumber(int burgerNumber) {
+        switch (burgerNumber) {
+            case 1: return "Egg Mayo";
+            case 2: return "Chicken Tikka";
+            case 3: return "Chicken Ham";
+            case 4: return "Roasted Chicken";
+        }
+        return null;
+    }
+
+    private int getBurgerCostByNumber(int burgerNumber) {
+        switch (burgerNumber) {
+            case 1: return 4000;
+            case 2:
+            case 3: return 5000;
+            case 4: return 5500;
+        }
+        return 0;
+    }
+
+    private String getCheeseTypeAsStringByNumber(int cheeseNumber) {
+        switch (cheeseNumber) {
+            case 1: return "American Cheese";
+            case 2: return "Swiss";
+            case 3: return "Cheddar";
+        }
+        return null;
+    }
+
+    private int getCheeseCostByNumber(int cheeseNumber) {
+        switch (cheeseNumber) {
+            case 1:
+            case 3: return 0;
+            case 2: return 100;
+        }
+        return 0;
+    }
+
+    private String getIngredientTypeAsStringByNumber(int ingredientNumber) {
+        switch (ingredientNumber) {
+            case 1: return "Lettuce";
+            case 2: return "Tomatoes";
+            case 3: return "Cucumber";
+            case 4: return "Olives";
+        }
+        return null;
+    }
+
+    private int getIngredientCostByNumber(int ingredientNumber) {
+        switch (ingredientNumber) {
+            case 1:
+            case 2: return 0;
+            case 3:
+            case 4: return 50;
+        }
+        return 0;
+    }
+
+    private String getBeverageTypeAsStringByNumber(int beverageNumber) {
+        switch (beverageNumber) {
+            case 1: return "Cola";
+            case 2: return "Fanta";
+            case 3: return "Chilsung Cider";
+            case 4: return "Zero Cola";
+            case 5: return "Coffee";
+        }
+        return null;
+    }
+
+    private int getBeverageCostByNumber(int beverageNumber) {
+        switch (beverageNumber) {
+            case 1: return 1000;
+            case 2: return 1100;
+            case 3: return 900;
+            case 4: return 1200;
+            case 5: return 2000;
+        }
+        return 0;
+    }
+
+    private String getExtraTypeAsStringByNumber(int extraNumber) {
+        switch (extraNumber) {
+            case 1: return "Cookies";
+            case 2: return "French Fries";
+            case 3: return "Chips";
+        }
+        return null;
+    }
+
+    private int getExtraCostByNumber(int extraNumber) {
+        switch (extraNumber) {
+            case 1: return 1500;
+            case 2: return 1300;
+            case 3: return 1700;
+        }
+        return 0;
     }
 }

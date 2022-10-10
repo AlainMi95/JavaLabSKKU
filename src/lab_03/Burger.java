@@ -8,14 +8,30 @@ public class Burger extends Food{
 
     @Override
     public int calculateCost() {
-        return super.calculateCost();
+        int totalCost = 0;
+
+        totalCost += this.getCost();
+        totalCost += cheese.getCost();
+
+        for (Ingredients ingredient:ingredients) {
+            totalCost += ingredient.getCost();
+        }
+        return totalCost;
     }
 
     public ArrayList<Ingredients> getIngredients() {
         return ingredients;
     }
 
+    public Cheese getCheese() {
+        return cheese;
+    }
+
     public void setIngredients(ArrayList<Ingredients> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public void setCheese(Cheese cheese) {
+        this.cheese = cheese;
     }
 }

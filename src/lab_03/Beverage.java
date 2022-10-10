@@ -5,7 +5,7 @@ public class Beverage extends Food{
 
     @Override
     public int calculateCost() {
-        return super.calculateCost();
+        return this.getCost();
     }
 
     public boolean isIce() {

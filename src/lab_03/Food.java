@@ -2,7 +2,7 @@ package lab_03;
 
 public class Food implements Payment{
     private String Type;
-    private double cost;
+    private int cost;
 
     @Override
     public int calculateCost() {
@@ -13,7 +13,7 @@ public class Food implements Payment{
         return Type;
     }
 
-    public double getCost() {
+    public int getCost() {
         return cost;
     }
 
@@ -21,7 +21,7 @@ public class Food implements Payment{
         Type = type;
     }
 
-    public void setCost(double cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 }

@@ -4,6 +4,6 @@ public class Extra extends Food{
 
     @Override
     public int calculateCost() {
-        return super.calculateCost();
+        return this.getCost();
     }
 }
