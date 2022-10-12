@@ -12,6 +12,11 @@ package lab_03;
  */
 public class Extra extends Food{
 
+    /**
+     * Constructor of the Extra Class.
+     */
+    public Extra() {}
+
     @Override
     public int calculateCost() {
         return this.getCost();

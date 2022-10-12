@@ -52,13 +52,14 @@ public class Main {
         cheese.setType(getCheeseTypeAsStringByNumber(cheeseNumber));
         burger.setCheese(cheese);
 
-        ingredients = new Ingredients();
+
         while(!skip){
             printIngredientsSelectionScreen();
             int ingredientNumber = getUserIntInput();
             if(ingredientNumber == 0){
                 skip = true;
             }else {
+                ingredients = new Ingredients();
                 ingredients.setCost(getIngredientCostByNumber(ingredientNumber));
                 ingredients.setType(getIngredientTypeAsStringByNumber(ingredientNumber));
                 burger.getIngredients().add(ingredients);

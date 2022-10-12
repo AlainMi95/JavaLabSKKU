@@ -15,6 +15,11 @@ public class Food implements Payment{
     private String type;
     private int cost;
 
+    /**
+     * Constructor of the Food Class.
+     */
+    public Food() {}
+
     @Override
     public int calculateCost() {
         return 0;

@@ -11,6 +11,12 @@ package lab_03;
  * It has the overridden method calculateCost, which can calculate the cost of a Cheese object.
  */
 public class Cheese extends Food{
+
+    /**
+     * Constructor of the Cheese Class.
+     */
+    public Cheese() {}
+
     @Override
     public int calculateCost() {
         return this.getCost();

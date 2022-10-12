@@ -17,6 +17,11 @@ public class Burger extends Food{
     Cheese cheese = new Cheese();
     private ArrayList<Ingredients> ingredients = new ArrayList<Ingredients>();
 
+    /**
+     * Constructor of the Burger Class.
+     */
+    public Burger() {}
+
     @Override
     public int calculateCost() {
         int totalCost = 0;

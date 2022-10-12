@@ -14,6 +14,11 @@ package lab_03;
 public class Beverage extends Food{
     private boolean ice;
 
+    /**
+     * Constructor of the Beverage Class.
+     */
+    public Beverage() {}
+
     @Override
     public int calculateCost() {
         return this.getCost();
