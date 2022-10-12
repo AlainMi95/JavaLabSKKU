@@ -1,8 +1,21 @@
+/**
+ * Author: Alain Michienzi (github: https://github.com/AlainMi95)
+ * Date: October 12 2022
+ * Version: 1.0
+ */
 package lab_03;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main class of the Assignment 3 Java Lab SKKU.
+ * This is a Subway application to help the waiters.
+ * The application can be used to place new orders and
+ * calculate the cost of the menu.
+ *
+ * The customer can choose from different burgers, beverage
+ * and extras.
+ */
 public class Main {
     private static Main MAIN = new Main();
     private static Scanner SCANNER = new Scanner(System.in);
@@ -15,6 +28,11 @@ public class Main {
 
     private boolean skip = false;
 
+    /**
+     * Main method of Assignment 3 Java Lab SKKU.
+     * This method starts the application.
+     * @param args
+     */
     public static void main(String[] args) {
         MAIN.runSubWayApp();
     }

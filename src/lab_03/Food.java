@@ -1,7 +1,18 @@
+/**
+ * Author: Alain Michienzi (github: https://github.com/AlainMi95)
+ * Date: October 12 2022
+ * Version: 1.0
+ */
 package lab_03;
 
+/**
+ * This class implements the Payment interface with its given methods.
+ * With this Class you can create a Food Object with type and cost.
+ * It has the overridden method calculateCost, which can calculate the cost of a food object.
+ * With its getter and setter you can get or set type and cost.
+ */
 public class Food implements Payment{
-    private String Type;
+    private String type;
     private int cost;
 
     @Override
@@ -10,7 +21,7 @@ public class Food implements Payment{
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public int getCost() {
@@ -18,7 +29,7 @@ public class Food implements Payment{
     }
 
     public void setType(String type) {
-        Type = type;
+        type = type;
     }
 
     public void setCost(int cost) {
