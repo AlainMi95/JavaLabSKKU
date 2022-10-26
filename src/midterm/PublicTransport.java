@@ -1,13 +1,25 @@
+/**
+ * Author: Alain Michienzi (github: https://github.com/AlainMi95)
+ * Date: October 26 2022
+ * Version: 1.0
+ */
 package midterm;
 
+/**
+ * This class implements the Payable interface with its given methods.
+ * With this Class you can create a PublicTransport Object.
+ * It has the overridden method calculatePayment, which can calculate the cost of a transport.
+ * With its getter and setter you can get or set model, baseFare and totalFare.
+ */
 public class PublicTransport implements Payable{
     private String model;
     private double baseFare;
     private double totalFare;
 
-    public PublicTransport() {
-
-    }
+    /**
+     * Constructor of the PublicTransport Class.
+     */
+    public PublicTransport() {}
 
     @Override
     public void calculatePayment() {
